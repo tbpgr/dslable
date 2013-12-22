@@ -31,16 +31,16 @@ set ...
 * execute method is main logic. you must edit additional logic manually.
 
 ### generated code: lib/your_gem_name_dsl.rb
-this file keeps values from DslSettingFile.
+* this file keeps values from DslSettingFile.
 
 ### generated code: lib/your_gem_name_dsl_model.rb
-this file define DslSettingFile's model.
+* this file define DslSettingFile's model.
 
 ### generated code: bin/your_bin_name
-this file has command line interface logic.
+* this file has command line interface logic.
 
 ### generated code: spec/your_gem_name_core_spec.rb
-this file is RSpec spec for 'your_gem_name_core.rb'.
+* this file is RSpec spec for 'your_gem_name_core.rb'.
 
 ## DSL List
 ### Global DSL
@@ -59,7 +59,7 @@ this file is RSpec spec for 'your_gem_name_core.rb'.
 | dsl          | mean                                                         |
 |:-----------  |:------------                                                 |
 | desc         |set your args description                                     |
-| klass        |set your field data type. you can choose [String, Array, Hash]|
+| klass        |set your args data type. you can choose [String, Array, Hash] |
 | required     |if you want to set required, use this.                        |
 | default_value|if you want to set default value, use this.                   |
 
