@@ -1,0 +1,30 @@
+# encoding: utf-8
+#!/usr/bin/env ruby
+require 'dslable/version'
+require 'dslable_core'
+require "thor"
+
+module Dslable
+  #= Dslable CLI
+  class CLI < Thor
+    class_option :help, :type => :boolean, :aliases => 'h', :desc => 'help message.'
+    class_option :version, :type => :boolean, :aliases => 'v', :desc => 'version'
+
+    desc "generate", "generate gem template"
+    def generate(*args)
+      Dslable::Core.new.generate
+    end
+
+    desc "init", "generate Dsldefine template"
+    def init(*args)
+      Dslable::Core.new.init
+    end
+
+    desc "version", "version"
+    def version
+      p Dslable::VERSION
+    end
+  end
+end
+
+Dslable::CLI.start(ARGV)
