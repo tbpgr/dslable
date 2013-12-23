@@ -85,6 +85,7 @@ Or install it yourself as:
 ~~~bash
 1 2 fizz 3 4 buzz 5 fizz 7 8 fizz buzz 11 fizz 13 14 fizzbuzz
 ~~~
+
 * you can choose output 'fizz/buzz/fizzbuzz' or 'FIZZ/BUZZ/FIZZBUZZ' by setting file.
 * you can set fizzbuzz range by setting file.
 
