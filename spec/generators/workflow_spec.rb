@@ -8,7 +8,7 @@ describe Dslable::Generators::Workflow do
     OUTPUT_WORKFLOW_TMP_DIR = "workflow_tmp"
     TODOS_CASE1 =<<-EOS
 implement 'sample_gem_core.rb' your main logic. pass rspec all specs.
-implement bin 'bin/your_bin'.
+implement bin 'bin/samplegem'.
 edit 'sample_gem.gemspec'.
 edit 'README.md'.
 edit 'LICENSE.txt'.
@@ -30,6 +30,7 @@ implement 'sample_gem_core_spec.rb'.
         case_no: 1,
         case_title: "generate",
         gem_name: "sample_gem",
+        bin_name: "samplegem",
         expected: Dslable::Generators::Workflow::TUDU_FILES,
         expected_contents: {
           :todos => TODOS_CASE1,
@@ -47,6 +48,7 @@ implement 'sample_gem_core_spec.rb'.
           # -- given --
           dsl = Dslable::Dsl.new
           dsl.gem_name c[:gem_name]
+          dsl.bin_name c[:bin_name]
           workflow = Dslable::Generators::Workflow.new(dsl)
 
           # -- when --

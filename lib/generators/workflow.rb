@@ -10,7 +10,7 @@ module Dslable::Generators
     # ==todos contents
     TODOS_CONTENTS = <<-EOS
 implement '<%=gem_name%>_core.rb' your main logic. pass rspec all specs.
-implement bin 'bin/your_bin'.
+implement bin 'bin/<%=bin_name%>'.
 edit '<%=gem_name%>.gemspec'.
 edit 'README.md'.
 edit 'LICENSE.txt'.
@@ -57,16 +57,17 @@ implement '<%=gem_name%>_core_spec.rb'.
     def generate
       Dir.mkdir('tudu')
       gem_name = @dsl._gem_name
+      bin_name = @dsl._bin_name
       TUDU_FILES.each do |key, file_definition|
         File.open("./#{file_definition[:file_name]}", "w") do |f|
-          f.print adapt_template(gem_name, file_definition[:contents])
+          f.print adapt_template(gem_name, bin_name, file_definition[:contents])
         end
       end
     end
 
     private
 
-    def adapt_template(gem_name, template)
+    def adapt_template(gem_name, bin_name, template)
       erb = ERB.new(template)
       erb.result(binding)
     end
