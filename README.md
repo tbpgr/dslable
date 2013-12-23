@@ -5,6 +5,7 @@ Dslable is generator for simple spec gem.
 ## Summary
 * create gem template with DslSettingFile.
 * you can get bin-executable gem.
+* you can gem creation workflow.
 * generated gem has 1-DslSettingFile.
 * generated gem has 1-core logic class.
 * generated gem has 1-dsl class.
@@ -186,9 +187,13 @@ fizz_buzz_gem
 │  └─fizz_buzz_gem
 │          version.rb
 │
-└─spec
-        fizz_buzz_gem_core_spec.rb
-        spec_helper.rb
+├─spec
+│      fizz_buzz_gem_core_spec.rb
+│      spec_helper.rb
+└─tudu
+        todos
+        doings
+        dones
 ~~~
 
 Gemfile Template
@@ -434,6 +439,35 @@ describe FizzBuzzGem::Core do
 end
 ~~~
 
+Workflow Template(tudu/todos, tudu/doings, tudu/dones). you can check by tudu gem.
+~~~bash
+$ tudu tasks -c
+========TODOS========
+implement 'fizz_buzz_gem_core.rb' your main logic. pass rspec all specs.
+implement bin 'bin/your_bin'.
+edit 'fizz_buzz_gem.gemspec'.
+edit 'README.md'.
+edit 'LICENSE.txt'.
+git add, commit.
+rake install.
+check gem(test using).
+gem uninstall fizz_buzz_gem.
+rake release.
+gem install fizz_buzz_gem.
+after release check.
+
+========DOINGS========
+implement 'fizz_buzz_gem_core_spec.rb'.
+
+========DONES========
+~~~
+
+### Steps: check todo by tudu now
+~~~bash
+$ tudu now
+implement 'fizz_buzz_gem_core_spec.rb'.
+~~~
+
 ### Steps: implement 'fizz_buzz_core_spec.rb' manually. (TDD step)
 ~~~ruby
 # encoding: utf-8
@@ -582,6 +616,13 @@ rspec ./spec/fizz_buzz_gem_core_spec.rb:75 # FizzBuzzGem::Core execute |case_no=
 Randomized with seed 63051
 ~~~
 
+### Steps: after implement spec, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+implement 'fizz_buzz_gem_core.rb' your main logic. pass rspec all specs.
+~~~
+
 ### Steps: implement 'fizz_buzz_core.rb' manually.
 ~~~ruby
 # encoding: utf-8
@@ -659,37 +700,11 @@ Finished in 0.011 seconds
 Randomized with seed 29906
 ~~~
 
-### Steps: Edit fizz_buzz_gem.gemspec manually
-~~~ruby
-# coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'fizz_buzz_gem/version'
-
-Gem::Specification.new do |spec|
-  spec.name          = "fizz_buzz_gem"
-  spec.version       = FizzBuzzGem::VERSION
-  spec.authors       = ["yourname"]
-  spec.email         = ["your@mail.address"]
-  spec.description   = %q{fizz buzz gem}
-  spec.summary       = %q{fizz buzz gem}
-  spec.homepage      = ""
-  spec.license       = "MIT"
-
-  spec.files         = `git ls-files`.split($/)
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
-
-  spec.add_runtime_dependency "thor", "~> 0.18.1"
-  spec.add_runtime_dependency "activesupport", "~> 4.0.1"
-  spec.add_runtime_dependency "activemodel", "~> 4.0.2"
-
-  spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec", "~> 2.14.1"
-  spec.add_development_dependency "simplecov", "~> 0.8.2"
-end
+### Steps: after implement core.rb, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+implement bin 'bin/your_bin'.
 ~~~
 
 ### Steps: Edit bin bin/fizzbuzzgem manually
@@ -727,6 +742,53 @@ end
 FizzBuzzGem::CLI.start(ARGV)
 ~~~
 
+### Steps: after implement bin, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+edit 'fizz_buzz_gem.gemspec'.
+~~~
+
+### Steps: Edit fizz_buzz_gem.gemspec manually
+~~~ruby
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'fizz_buzz_gem/version'
+
+Gem::Specification.new do |spec|
+  spec.name          = "fizz_buzz_gem"
+  spec.version       = FizzBuzzGem::VERSION
+  spec.authors       = ["yourname"]
+  spec.email         = ["your@mail.address"]
+  spec.description   = %q{fizz buzz gem}
+  spec.summary       = %q{fizz buzz gem}
+  spec.homepage      = ""
+  spec.license       = "MIT"
+
+  spec.files         = `git ls-files`.split($/)
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
+
+  spec.add_runtime_dependency "thor", "~> 0.18.1"
+  spec.add_runtime_dependency "activesupport", "~> 4.0.1"
+  spec.add_runtime_dependency "activemodel", "~> 4.0.2"
+
+  spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec", "~> 2.14.1"
+  spec.add_development_dependency "simplecov", "~> 0.8.2"
+end
+~~~
+
+### Steps: after edit gemspec, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+edit 'README.md'.
+~~~
+
 ### Steps: Edit README.md manually
 ~~~ruby
 # FizzBuzzGem
@@ -760,6 +822,23 @@ usage...
 5. Create new Pull Request
 ~~~
 
+### Steps: after edit README.md, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+edit 'LICENSE.txt'.
+~~~
+
+### Steps: Edit LICENSE.txt
+edit.
+
+### Steps: after edit LICENSE.txt, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+git add, commit.
+~~~
+
 ### Steps: git add, commit
 ~~~bash
 $ git add -A
@@ -767,11 +846,25 @@ $ git add -u
 $ git commit -m "first commit"
 ~~~
 
+### Steps: after git add/commit, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+rake install.
+~~~
+
 ### Steps: rake install
 ~~~bash
 $ rake install
 fizz_buzz_gem 0.0.1 built to pkg/fizz_buzz_gem-0.0.1.gem.
 fizz_buzz_gem (0.0.1) installed.
+~~~
+
+### Steps: after rake install, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+check gem(test using).
 ~~~
 
 ### Steps: test use fizzbuzzgem
@@ -834,17 +927,66 @@ $ fizzbuzzgem e
 1 2 fizz 4 buzz fizz 7 8 fizz buzz 11 fizz 13 14 fizzbuzz
 ~~~
 
+### Steps: after test using, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+gem uninstall fizz_buzz_gem.
+~~~
+
+### Steps: uninstall test installed gem.
+~~~bash
+gem uninstall fizz_buzz_gem
+~~~
+
+### Steps: after gem uninstall fizz_buzz_gem, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+rake release.
+~~~
+
 ### Steps: if test using is ok, release gem to RubyGems
-~~~csh
+~~~bash
 $ rake release
+~~~
+
+### Steps: after rake release, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+gem install fizz_buzz_gem.
+~~~
+
+### Steps: install gem
+~~~bash
+$ gem install fizz_buzz_gem
+~~~
+
+### Steps: after gem install fizz_buzz_gem, execute 'tudu done'. and confirm next todo by 'todo now'
+~~~bash
+$ tudu done
+$ tudu now
+after release check.
+~~~
+
+### Steps: check your gem.
+check.
+
+### Steps: after check your gem complete, execute 'tudu done'. all todo complete'
+~~~bash
+$ tudu done
+All Tasks Finish!!
 ~~~
 
 ## Notes
 * this gem uses 'bundle gem' command to create gem template. (bundler gem).
 * this gem uses 'rspec --init' command to create RSpec template (rspec gem).
 * this gem uses 'piccolo' command to create RSpec spec template (rspec_piccolo gem).
+* this gem uses 'tudu' command to create Workflow (tudu gem).
 
 ## History
+* version 0.0.2 : add workflow generation by 'tudu gem'.
 * version 0.0.1 : first release.
 
 ## Contributing
