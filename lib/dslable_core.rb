@@ -3,6 +3,7 @@ require "dslable_field"
 require "dslable_args"
 require "dslable_dsl"
 require "generators/gem_template"
+require "generators/workflow"
 require "generators/product_codes/cli"
 require "generators/product_codes/core"
 require "generators/product_codes/dsl"
@@ -62,6 +63,7 @@ end
       dsl.instance_eval src
       Dslable::Generators::GemTemplate.new(dsl).generate
       Dslable::Generators::Settings::Gemfile.new(dsl).generate
+      Dslable::Generators::Workflow.new(dsl).generate
       Dslable::Generators::ProductCodes::Core.new(dsl).generate
       Dslable::Generators::ProductCodes::Dsl.new(dsl).generate
       Dslable::Generators::ProductCodes::DslModel.new(dsl).generate
