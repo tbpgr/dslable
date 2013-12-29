@@ -57,12 +57,12 @@ set ...
 | desc         |set your field description|
 
 ### Args DSL
-| dsl          | mean                                                         |
-|:-----------  |:------------                                                 |
-| desc         |set your args description                                     |
-| klass        |set your args data type. you can choose [String, Array, Hash] |
-| required     |if you want to set required, use this.                        |
-| default_value|if you want to set default value, use this.                   |
+| dsl          | mean                                                                   |
+|:-----------  |:------------                                                           |
+| desc         |set your args description                                               |
+| klass        |set your args data type. you can choose [String, Array, Hash, :Boolean] |
+| required     |if you want to set required, use this.                                  |
+| default_value|if you want to set default value, use this.                             |
 
 ## Installation
 
@@ -113,7 +113,7 @@ field :field_name1 do |f|
   f.args :args_name do |a|
     # set your args description
     a.desc "args description"
-    # you can use String, Array and Hash
+    # you can use String, Array, Hash and :Boolean
     a.klass String
     # if you want not required, comment out following line
     a.required

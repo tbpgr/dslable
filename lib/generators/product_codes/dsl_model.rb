@@ -1,12 +1,12 @@
 # encoding: utf-8
-require "generators/generators"
-require "erb"
+require 'generators/generators'
+require 'erb'
 require 'active_support/inflector'
-require "dslable_dsl"
+require 'dslable_dsl'
 
 module Dslable::Generators::ProductCodes
   class DslModel
-    DSL_MODEL_TEMPLATE =<<-EOF
+    DSL_MODEL_TEMPLATE = <<-EOF
 # encoding: utf-8
 require 'active_model'
 
@@ -21,11 +21,11 @@ end
 
     attr_accessor :dsl
 
-    #== initialize dsl model
-    #=== Params
+    # == initialize dsl model
+    # === Params
     #- _dsl: input from dsl
     def initialize(_dsl)
-      raise InvalidDslError.new("dsl not allow nil") if _dsl.nil?
+      fail InvalidDslError.new('dsl not allow nil') if _dsl.nil?
       @dsl = _dsl
     end
 
@@ -42,7 +42,7 @@ end
         field_codes << "    # #{field._desc}"
         field_codes << "    attr_accessor :#{field._field_name}"
         field_codes << "    validates :#{field._field_name}, :presence => true" if field._args._required
-        field_codes << ""
+        field_codes << ''
         fields << field_codes.join("\n")
       end
       fields.join("\n")
@@ -55,9 +55,9 @@ end
     end
 
     def generate_dsl_model_src(dsl_model_src)
-      File.open("./lib/#{@dsl._gem_name}_dsl_model.rb", "w") {|f|f.puts dsl_model_src}
+      File.open("./lib/#{@dsl._gem_name}_dsl_model.rb", 'w') { |f|f.puts dsl_model_src }
     end
   end
 
-  class InvalidDslError < StandardError;end
+  class InvalidDslError < StandardError; end
 end

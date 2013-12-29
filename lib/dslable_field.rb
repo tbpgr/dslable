@@ -1,5 +1,5 @@
 # encoding: utf-8
-require "dslable_args"
+require 'dslable_args'
 
 module Dslable
   class Field
@@ -8,7 +8,7 @@ module Dslable
     attr_accessor :_args
 
     def initialize
-      @_desc = ""
+      @_desc = ''
     end
 
     def field_name(_name)
@@ -22,9 +22,9 @@ module Dslable
     end
 
     def args(args_name)
-      raise InvalidFieldError.new("args_name not allow nil") if args_name.nil?
-      raise InvalidFieldError.new("args_name not allow empty") if args_name.empty?
-      raise InvalidFieldError.new("args_name allow /^[a-z0-9_]+$/. your input is #{args_name}") unless args_name =~ /^[a-z0-9_]+$/
+      fail InvalidFieldError.new('args_name not allow nil') if args_name.nil?
+      fail InvalidFieldError.new('args_name not allow empty') if args_name.empty?
+      fail InvalidFieldError.new("args_name allow /^[a-z0-9_]+$/. your input is #{args_name}") unless args_name =~ /^[a-z0-9_]+$/
       dslable_args = Dslable::Args.new
       dslable_args._args_name = args_name
       yield dslable_args
@@ -32,5 +32,5 @@ module Dslable
     end
   end
 
-  class InvalidFieldError < StandardError;end
+  class InvalidFieldError < StandardError; end
 end

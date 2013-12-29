@@ -1,25 +1,25 @@
 # encoding: utf-8
-require "spec_helper"
-require "generators/settings/gemfile"
+require 'spec_helper'
+require 'generators/settings/gemfile'
 
 describe Dslable::Generators::Settings::Gemfile do
 
   context :generate do
-    OUTPUT_GEMFILE_TMP_DIR = "generate_gemfile"
+    OUTPUT_GEMFILE_TMP_DIR = 'generate_gemfile'
 
     cases = [
       {
         case_no: 1,
-        case_title: "generate",
-        gem_name: "sample_gem",
-        bin_name: "samplegem",
+        case_title: 'generate',
+        gem_name: 'sample_gem',
+        bin_name: 'samplegem',
         fields: [:field1],
-        fields_descs: ["field_desc1"],
+        fields_descs: ['field_desc1'],
         args: [:args1],
         args_klass: [String],
         args_required: [true],
-        args_default: ["default1"],
-        expected_file: "./Gemfile",
+        args_default: ['default1'],
+        expected_file: './Gemfile',
         expected_contents: Dslable::Generators::Settings::Gemfile::GEMFILE_TEMPLATE
       },
     ]
@@ -37,7 +37,7 @@ describe Dslable::Generators::Settings::Gemfile do
           gen_gemfile.generate
 
           # -- then --
-          actual = File.open(c[:expected_file]) {|f|f.read}
+          actual = File.open(c[:expected_file]) { |f|f.read }
           expect(actual).to eq(c[:expected_contents])
         ensure
           case_after c
@@ -69,7 +69,7 @@ describe Dslable::Generators::Settings::Gemfile do
 
       def case_after(c)
         # implement each case after
-        Dir.chdir("../")
+        Dir.chdir('../')
         FileUtils.rm_rf(OUTPUT_GEMFILE_TMP_DIR) if Dir.exists? OUTPUT_GEMFILE_TMP_DIR
       end
     end

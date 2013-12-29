@@ -1,27 +1,27 @@
 # encoding: utf-8
-require "spec_helper"
-require "dslable_field"
+require 'spec_helper'
+require 'dslable_field'
 
 describe Dslable::Field do
   context :desc do
     cases = [
       {
         case_no: 1,
-        case_title: "valid description",
-        input: "this is descripotion",
-        expected: "this is descripotion"
+        case_title: 'valid description',
+        input: 'this is descripotion',
+        expected: 'this is descripotion'
       },
       {
         case_no: 2,
-        case_title: "empty description",
-        input: "",
-        expected: ""
+        case_title: 'empty description',
+        input: '',
+        expected: ''
       },
       {
         case_no: 3,
-        case_title: "nil description",
+        case_title: 'nil description',
         input: nil,
-        expected: ""
+        expected: ''
       },
     ]
 
@@ -58,17 +58,17 @@ describe Dslable::Field do
     cases = [
       {
         case_no: 1,
-        case_title: "valid args",
+        case_title: 'valid args',
         input_key: :args_name,
-        input_desc: "desc",
+        input_desc: 'desc',
         input_klass: String,
         input_required: true,
-        input_default_value: "default",
+        input_default_value: 'default',
         expected_key: :args_name,
-        expected_desc: "desc",
+        expected_desc: 'desc',
         expected_klass: String,
         expected_required: true,
-        expected_default_value: "default",
+        expected_default_value: 'default',
       },
     ]
 

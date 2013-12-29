@@ -5,8 +5,8 @@ require 'generators/workflow'
 describe Dslable::Generators::Workflow do
 
   context :generate do
-    OUTPUT_WORKFLOW_TMP_DIR = "workflow_tmp"
-    TODOS_CASE1 =<<-EOS
+    OUTPUT_WORKFLOW_TMP_DIR = 'workflow_tmp'
+    TODOS_CASE1 = <<-EOS
 implement 'sample_gem_core.rb' your main logic. pass rspec all specs.
 implement bin 'bin/samplegem'.
 edit 'sample_gem.gemspec'.
@@ -21,21 +21,21 @@ gem install sample_gem.
 after release check.
     EOS
 
-    DOINGS_CASE1 =<<-EOS
+    DOINGS_CASE1 = <<-EOS
 implement 'sample_gem_core_spec.rb'.
     EOS
 
     cases = [
       {
         case_no: 1,
-        case_title: "generate",
-        gem_name: "sample_gem",
-        bin_name: "samplegem",
+        case_title: 'generate',
+        gem_name: 'sample_gem',
+        bin_name: 'samplegem',
         expected: Dslable::Generators::Workflow::TUDU_FILES,
         expected_contents: {
-          :todos => TODOS_CASE1,
-          :doings => DOINGS_CASE1,
-          :dones => ""
+          todos: TODOS_CASE1,
+          doings: DOINGS_CASE1,
+          dones: ''
         }
       },
     ]
@@ -56,7 +56,7 @@ implement 'sample_gem_core_spec.rb'.
 
           # -- then --
           c[:expected].each do |key, file_definition|
-            actual = File.open(file_definition[:file_name]) {|f|f.read}
+            actual = File.open(file_definition[:file_name]) { |f|f.read }
             expect(actual).to eq(c[:expected_contents][key])
           end
         ensure
@@ -72,7 +72,7 @@ implement 'sample_gem_core_spec.rb'.
 
       def case_after(c)
         # implement each case after
-        Dir.chdir("../")
+        Dir.chdir('../')
         FileUtils.rm_rf(OUTPUT_WORKFLOW_TMP_DIR) if Dir.exists? OUTPUT_WORKFLOW_TMP_DIR
       end
     end

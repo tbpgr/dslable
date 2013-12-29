@@ -1,13 +1,13 @@
 # encoding: utf-8
-require "generators/generators"
-require "erb"
+require 'generators/generators'
+require 'erb'
 require 'active_support/inflector'
-require "dslable_dsl"
-require "fileutils"
+require 'dslable_dsl'
+require 'fileutils'
 
 module Dslable::Generators::ProductCodes
   class CLI
-    CLI_TEMPLATE =<<-EOF
+    CLI_TEMPLATE = <<-EOF
 #!/usr/bin/env ruby
 # encoding: utf-8
 
@@ -43,11 +43,11 @@ end
 
     attr_accessor :dsl
 
-    #== initialize dsl model
-    #=== Params
+    # == initialize dsl model
+    # === Params
     #- _dsl: input from dsl
     def initialize(_dsl)
-      raise InvalidDslError.new("dsl not allow nil") if _dsl.nil?
+      fail InvalidDslError.new('dsl not allow nil') if _dsl.nil?
       @dsl = _dsl
     end
 
@@ -65,10 +65,10 @@ end
     end
 
     def generate_cli_src(cli_src)
-      FileUtils.mkdir_p("./bin") unless File.exists?("./bin")
-      File.open("./bin/#{@dsl._bin_name}", "w") {|f|f.puts cli_src}
+      FileUtils.mkdir_p('./bin') unless File.exists?('./bin')
+      File.open("./bin/#{@dsl._bin_name}", 'w') { |f|f.puts cli_src }
     end
   end
 
-  class InvalidDslError < StandardError;end
+  class InvalidDslError < StandardError; end
 end

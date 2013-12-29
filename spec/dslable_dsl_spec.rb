@@ -1,32 +1,32 @@
 # encoding: utf-8
-require "spec_helper"
-require "dslable_dsl"
+require 'spec_helper'
+require 'dslable_dsl'
 
 describe Dslable::Dsl do
   context :gem_name do
     cases = [
       {
         case_no: 1,
-        case_title: "valid gem name",
-        input: "abcdefghijklmnopqrstuvwxyz01234567891_",
-        expected: "abcdefghijklmnopqrstuvwxyz01234567891_"
+        case_title: 'valid gem name',
+        input: 'abcdefghijklmnopqrstuvwxyz01234567891_',
+        expected: 'abcdefghijklmnopqrstuvwxyz01234567891_'
       },
       {
         case_no: 2,
-        case_title: "empty gem name",
-        input: "",
+        case_title: 'empty gem name',
+        input: '',
         expect_error: true
       },
       {
         case_no: 3,
-        case_title: "nil gem name",
+        case_title: 'nil gem name',
         input: nil,
         expect_error: true
       },
       {
         case_no: 4,
-        case_title: "invalid gem name contain space",
-        input: "gem name",
+        case_title: 'invalid gem name contain space',
+        input: 'gem name',
         expect_error: true
       },
     ]
@@ -41,7 +41,7 @@ describe Dslable::Dsl do
 
           # -- when --
           if c[:expect_error]
-            lambda {dslable_dsl.gem_name c[:input]}.should raise_error(Dslable::InvalidDslError)
+            lambda { dslable_dsl.gem_name c[:input] }.should raise_error(Dslable::InvalidDslError)
             next
           end
           dslable_dsl.gem_name c[:input]
@@ -68,19 +68,19 @@ describe Dslable::Dsl do
     cases = [
       {
         case_no: 1,
-        case_title: "valid gem desc",
-        input: "abcdefghijklmnopqrstuvwxyz01234567891_",
-        expected: "abcdefghijklmnopqrstuvwxyz01234567891_"
+        case_title: 'valid gem desc',
+        input: 'abcdefghijklmnopqrstuvwxyz01234567891_',
+        expected: 'abcdefghijklmnopqrstuvwxyz01234567891_'
       },
       {
         case_no: 2,
-        case_title: "empty gem desc",
-        input: "",
+        case_title: 'empty gem desc',
+        input: '',
         expect_error: true
       },
       {
         case_no: 3,
-        case_title: "nil gem desc",
+        case_title: 'nil gem desc',
         input: nil,
         expect_error: true
       },
@@ -96,7 +96,7 @@ describe Dslable::Dsl do
 
           # -- when --
           if c[:expect_error]
-            lambda {dslable_dsl.gem_desc c[:input]}.should raise_error(Dslable::InvalidDslError)
+            lambda { dslable_dsl.gem_desc c[:input] }.should raise_error(Dslable::InvalidDslError)
             next
           end
           dslable_dsl.gem_desc c[:input]
@@ -123,15 +123,15 @@ describe Dslable::Dsl do
     cases = [
       {
         case_no: 1,
-        case_title: "case_title",
+        case_title: 'case_title',
         input_field_name: :field_name,
-        input_field_desc: "field_desc",
+        input_field_desc: 'field_desc',
         input_args_name: :args_name,
-        input_args_desc: "args_desc",
+        input_args_desc: 'args_desc',
         expected_field_name: :field_name,
-        expected_field_desc: "field_desc",
+        expected_field_desc: 'field_desc',
         expected_args_name: :args_name,
-        expected_args_desc: "args_desc",
+        expected_args_desc: 'args_desc',
       },
     ]
 
@@ -176,26 +176,26 @@ describe Dslable::Dsl do
     cases = [
       {
         case_no: 1,
-        case_title: "valid bin name",
-        input: "abcdefghijklmnopqrstuvwxyz01234567891_",
-        expected: "abcdefghijklmnopqrstuvwxyz01234567891_"
+        case_title: 'valid bin name',
+        input: 'abcdefghijklmnopqrstuvwxyz01234567891_',
+        expected: 'abcdefghijklmnopqrstuvwxyz01234567891_'
       },
       {
         case_no: 2,
-        case_title: "empty bin name",
-        input: "",
+        case_title: 'empty bin name',
+        input: '',
         expect_error: true
       },
       {
         case_no: 3,
-        case_title: "nil bin name",
+        case_title: 'nil bin name',
         input: nil,
         expect_error: true
       },
       {
         case_no: 4,
-        case_title: "invalid bin name contain space",
-        input: "bin name",
+        case_title: 'invalid bin name contain space',
+        input: 'bin name',
         expect_error: true
       },
     ]
@@ -210,7 +210,7 @@ describe Dslable::Dsl do
 
           # -- when --
           if c[:expect_error]
-            lambda {dslable_dsl.bin_name c[:input]}.should raise_error(Dslable::InvalidDslError)
+            lambda { dslable_dsl.bin_name c[:input] }.should raise_error(Dslable::InvalidDslError)
             next
           end
           dslable_dsl.bin_name c[:input]

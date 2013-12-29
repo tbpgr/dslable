@@ -1,19 +1,19 @@
 # encoding: utf-8
-require "generators/generators"
+require 'generators/generators'
 
 module Dslable::Generators::RSpec
   # Dslable::Generators::RSpec Specs Generator specs
   class Specs
     attr_accessor :dsl
 
-    #== initialize generate specs
-    #=== Params
+    # == initialize generate specs
+    # === Params
     #- _dsl: input from dsl
     def initialize(_dsl)
       @dsl = _dsl
     end
 
-    #== generate specs
+    # == generate specs
     def generate
       generate_core
     end

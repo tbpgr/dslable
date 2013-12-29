@@ -1,19 +1,19 @@
 # encoding: utf-8
-require "spec_helper"
-require "generators/rspec/spec_template"
-require "dslable_dsl"
+require 'spec_helper'
+require 'generators/rspec/spec_template'
+require 'dslable_dsl'
 
 describe Dslable::Generators::RSpec::SpecTemplate do
 
   context :generate do
-    OUTPUT_SPEC_TMP_DIR = "generate_spec_template"
+    OUTPUT_SPEC_TMP_DIR = 'generate_spec_template'
 
     cases = [
       {
         case_no: 1,
-        case_title: "valid spec template",
-        gem_name: "sample_gem",
-        spec_dir_name: "spec"
+        case_title: 'valid spec template',
+        gem_name: 'sample_gem',
+        spec_dir_name: 'spec'
       },
     ]
 
@@ -45,7 +45,7 @@ describe Dslable::Generators::RSpec::SpecTemplate do
         end
 
         def case_after(c)
-          Dir.chdir("../")
+          Dir.chdir('../')
           FileUtils.rm_rf(OUTPUT_SPEC_TMP_DIR) if Dir.exists? OUTPUT_SPEC_TMP_DIR
       end
     end

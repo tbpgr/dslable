@@ -1,12 +1,12 @@
 # encoding: utf-8
-require "spec_helper"
-require "generators/product_codes/cli"
+require 'spec_helper'
+require 'generators/product_codes/cli'
 
 describe Dslable::Generators::ProductCodes::CLI do
 
   context :generate do
-    OUTPUT_CLI_TMP_DIR = "generate_cli"
-    OUTPUT_CLI_CASE1 =<<-EOF
+    OUTPUT_CLI_TMP_DIR = 'generate_cli'
+    OUTPUT_CLI_CASE1 = <<-EOF
 #!/usr/bin/env ruby
 # encoding: utf-8
 
@@ -42,16 +42,16 @@ SampleGem::CLI.start(ARGV)
     cases = [
       {
         case_no: 1,
-        case_title: "generate",
-        gem_name: "sample_gem",
-        bin_name: "samplegem",
+        case_title: 'generate',
+        gem_name: 'sample_gem',
+        bin_name: 'samplegem',
         fields: [:field1, :field2, :field3, :field4, :field5, :field6],
-        fields_descs: ["field_desc1", "field_desc2", "field_desc3", "field_desc4", "field_desc5", "field_desc6"],
+        fields_descs: ['field_desc1', 'field_desc2', 'field_desc3', 'field_desc4', 'field_desc5', 'field_desc6'],
         args: [:args1, :args2, :args3, :args4, :args5, :args6],
         args_klass: [String, Array, Hash, String, Array, Hash],
         args_required: [true, true, true, false, false, false],
-        args_default: ["default1", ["default1", "default2"], {default_key: "default_value"}, nil, nil, nil],
-        expected_file: "./bin/samplegem",
+        args_default: ['default1', ['default1', 'default2'], { default_key: 'default_value' }, nil, nil, nil],
+        expected_file: './bin/samplegem',
         expected_contents: OUTPUT_CLI_CASE1
       },
     ]
@@ -69,7 +69,7 @@ SampleGem::CLI.start(ARGV)
           gen_cli.generate
 
           # -- then --
-          actual = File.open(c[:expected_file]) {|f|f.read}
+          actual = File.open(c[:expected_file]) { |f|f.read }
           expect(actual).to eq(c[:expected_contents])
         ensure
           case_after c
@@ -81,7 +81,7 @@ SampleGem::CLI.start(ARGV)
         # implement each case before
         Dir.mkdir(OUTPUT_CLI_TMP_DIR) unless Dir.exists? OUTPUT_CLI_TMP_DIR
         Dir.chdir(OUTPUT_CLI_TMP_DIR)
-        Dir.mkdir "bin"
+        Dir.mkdir 'bin'
       end
 
       def setup_dsl(c, dsl)
@@ -102,7 +102,7 @@ SampleGem::CLI.start(ARGV)
 
       def case_after(c)
         # implement each case after
-        Dir.chdir("../")
+        Dir.chdir('../')
         FileUtils.rm_rf(OUTPUT_CLI_TMP_DIR) if Dir.exists? OUTPUT_CLI_TMP_DIR
       end
     end

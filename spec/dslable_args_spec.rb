@@ -1,27 +1,27 @@
 # encoding: utf-8
-require "spec_helper"
-require "dslable_args"
+require 'spec_helper'
+require 'dslable_args'
 
 describe Dslable::Args do
   context :desc do
     cases = [
       {
         case_no: 1,
-        case_title: "valid description",
-        input: "this is descripotion",
-        expected: "this is descripotion"
+        case_title: 'valid description',
+        input: 'this is descripotion',
+        expected: 'this is descripotion'
       },
       {
         case_no: 2,
-        case_title: "empty description",
-        input: "",
-        expected: ""
+        case_title: 'empty description',
+        input: '',
+        expected: ''
       },
       {
         case_no: 3,
-        case_title: "nil description",
+        case_title: 'nil description',
         input: nil,
-        expected: ""
+        expected: ''
       },
     ]
 
@@ -58,26 +58,26 @@ describe Dslable::Args do
     cases = [
       {
         case_no: 1,
-        case_title: "valid dsl_args name",
-        input: "abcdefghijklmnopqrstuvwxyz01234567891_",
-        expected: "abcdefghijklmnopqrstuvwxyz01234567891_"
+        case_title: 'valid dsl_args name',
+        input: 'abcdefghijklmnopqrstuvwxyz01234567891_',
+        expected: 'abcdefghijklmnopqrstuvwxyz01234567891_'
       },
       {
         case_no: 2,
-        case_title: "empty dsl_args name",
-        input: "",
+        case_title: 'empty dsl_args name',
+        input: '',
         expect_error: true
       },
       {
         case_no: 3,
-        case_title: "nil dsl_args name",
+        case_title: 'nil dsl_args name',
         input: nil,
         expect_error: true
       },
       {
         case_no: 4,
-        case_title: "invalid dsl_args name contain space",
-        input: "method name",
+        case_title: 'invalid dsl_args name contain space',
+        input: 'method name',
         expect_error: true
       },
     ]
@@ -92,7 +92,7 @@ describe Dslable::Args do
 
           # -- when --
           if c[:expect_error]
-            lambda {dslable_args.args_name c[:input]}.should raise_error(Dslable::InvalidArgsError)
+            lambda { dslable_args.args_name c[:input] }.should raise_error(Dslable::InvalidArgsError)
             next
           end
           dslable_args.args_name c[:input]
@@ -119,33 +119,39 @@ describe Dslable::Args do
     cases = [
       {
         case_no: 1,
-        case_title: "valid klass String",
+        case_title: 'valid klass String',
         input: String,
         expected: String
       },
       {
         case_no: 2,
-        case_title: "valid klass Array",
+        case_title: 'valid klass Array',
         input: Array,
         expected: Array
       },
       {
         case_no: 3,
-        case_title: "valid klass Hash",
+        case_title: 'valid klass Hash',
         input: Hash,
         expected: Hash
       },
       {
         case_no: 4,
-        case_title: "invalid klass Hash",
+        case_title: 'invalid klass Hash',
         input: Fixnum,
         expect_error: true
       },
       {
         case_no: 5,
-        case_title: "nil klass",
+        case_title: 'nil klass',
         input: nil,
         expect_error: true
+      },
+      {
+        case_no: 6,
+        case_title: 'valid klass Boolean',
+        input: :Boolean,
+        expected: :Boolean
       },
     ]
 
@@ -159,7 +165,7 @@ describe Dslable::Args do
 
           # -- when --
           if c[:expect_error]
-            lambda {dslable_args.klass c[:input]}.should raise_error(Dslable::InvalidArgsError)
+            lambda { dslable_args.klass c[:input] }.should raise_error(Dslable::InvalidArgsError)
             next
           end
           dslable_args.klass c[:input]
@@ -186,7 +192,7 @@ describe Dslable::Args do
     cases = [
       {
         case_no: 1,
-        case_title: "valid required",
+        case_title: 'valid required',
         expected: true
       },
     ]
@@ -224,9 +230,9 @@ describe Dslable::Args do
     cases = [
       {
         case_no: 1,
-        case_title: "valid default",
-        input: "valid default",
-        expected: "valid default"
+        case_title: 'valid default',
+        input: 'valid default',
+        expected: 'valid default'
       },
     ]
 

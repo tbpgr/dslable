@@ -1,10 +1,10 @@
 # encoding: utf-8
-require "generators/generators"
-require "dslable_dsl"
+require 'generators/generators'
+require 'dslable_dsl'
 
 module Dslable::Generators::Settings
   class Gemfile
-    GEMFILE_TEMPLATE =<<-EOF
+    GEMFILE_TEMPLATE = <<-EOF
 source 'https://rubygems.org'
 
 gemspec
@@ -18,17 +18,17 @@ gem "tudu", "~> 0.0.4"
 
     attr_accessor :dsl
 
-    #== initialize dsl model
-    #=== Params
+    # == initialize dsl model
+    # === Params
     #- _dsl: input from dsl
     def initialize(_dsl)
-      raise InvalidDslError.new("dsl not allow nil") if _dsl.nil?
+      fail InvalidDslError.new('dsl not allow nil') if _dsl.nil?
       @dsl = _dsl
     end
 
     def generate
-      File.open("./Gemfile", "w") {|f|f.puts GEMFILE_TEMPLATE}
+      File.open('./Gemfile', 'w') { |f|f.puts GEMFILE_TEMPLATE }
     end
   end
-  class InvalidDslError < StandardError;end
+  class InvalidDslError < StandardError; end
 end

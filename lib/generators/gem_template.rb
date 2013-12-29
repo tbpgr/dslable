@@ -7,14 +7,14 @@ module Dslable::Generators
   class GemTemplate
     attr_accessor :dsl
 
-    #== initialize generate gem template
-    #=== Params
+    # == initialize generate gem template
+    # === Params
     #- _dsl: input from dsl
     def initialize(_dsl)
       @dsl = _dsl
     end
 
-    #== generate gem template
+    # == generate gem template
     def generate
       `bundle gem #{@dsl._gem_name}`
       Dir.chdir(@dsl._gem_name)

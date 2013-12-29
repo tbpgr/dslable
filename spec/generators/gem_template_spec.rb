@@ -1,17 +1,17 @@
 # encoding: utf-8
-require "spec_helper"
-require "generators/gem_template"
-require "dslable_dsl"
+require 'spec_helper'
+require 'generators/gem_template'
+require 'dslable_dsl'
 
 describe Dslable::Generators::GemTemplate do
   context :generate do
-    OUTPUT_TMP_DIR = "generate_gem_template"
+    OUTPUT_TMP_DIR = 'generate_gem_template'
 
     cases = [
       {
         case_no: 1,
-        case_title: "valid gem template",
-        gem_name: "sample_gem"
+        case_title: 'valid gem template',
+        gem_name: 'sample_gem'
       },
     ]
 
@@ -43,7 +43,7 @@ describe Dslable::Generators::GemTemplate do
       end
 
       def case_after(c)
-        Dir.chdir("../../")
+        Dir.chdir('../../')
         FileUtils.rm_rf(OUTPUT_TMP_DIR) if Dir.exists? OUTPUT_TMP_DIR
       end
     end

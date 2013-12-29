@@ -30,36 +30,36 @@ implement '<%=gem_name%>_core_spec.rb'.
 
     # ==tudu file definitions
     TUDU_FILES = {
-      :todos => {
-        :file_name => 'tudu/todos',
-        :contents => TODOS_CONTENTS
+      todos: {
+        file_name: 'tudu/todos',
+        contents: TODOS_CONTENTS
       },
-      :doings => {
-        :file_name => 'tudu/doings',
-        :contents => DOINGS_CONTENTS
+      doings: {
+        file_name: 'tudu/doings',
+        contents: DOINGS_CONTENTS
       },
-      :dones => {
-        :file_name => 'tudu/dones',
-        :contents => ''
+      dones: {
+        file_name: 'tudu/dones',
+        contents: ''
       },
     }
     attr_accessor :dsl
 
-    #== initialize generate gem template
-    #=== Params
+    # == initialize generate gem template
+    # === Params
     #- _dsl: input from dsl
     def initialize(_dsl)
-      raise InvalidDslError.new('dsl not allow nil') if _dsl.nil?
+      fail InvalidDslError.new('dsl not allow nil') if _dsl.nil?
       @dsl = _dsl
     end
 
-    #== generate gem template
+    # == generate gem template
     def generate
       Dir.mkdir('tudu')
       gem_name = @dsl._gem_name
       bin_name = @dsl._bin_name
       TUDU_FILES.each do |key, file_definition|
-        File.open("./#{file_definition[:file_name]}", "w") do |f|
+        File.open("./#{file_definition[:file_name]}", 'w') do |f|
           f.print adapt_template(gem_name, bin_name, file_definition[:contents])
         end
       end
@@ -72,5 +72,5 @@ implement '<%=gem_name%>_core_spec.rb'.
       erb.result(binding)
     end
   end
-  class InvalidDslError < StandardError;end
+  class InvalidDslError < StandardError; end
 end

@@ -1,14 +1,14 @@
 # encoding: utf-8
-require "spec_helper"
-require "dslable_core"
-require "fileutils"
+require 'spec_helper'
+require 'dslable_core'
+require 'fileutils'
 
 describe Dslable::Core do
   context :init do
     cases = [
       {
         case_no: 1,
-        case_title: "output template",
+        case_title: 'output template',
         expected: Dslable::Core::DSLDEFINE_TEMPLATE
       },
     ]
@@ -25,7 +25,7 @@ describe Dslable::Core do
           dslable_core.init
 
           # -- then --
-          actual = File.open(Dslable::Core::DSLDEFINE_FILE) {|f|f.read}
+          actual = File.open(Dslable::Core::DSLDEFINE_FILE) { |f|f.read }
           expect(actual).to eq(c[:expected])
         ensure
           case_after c
@@ -43,7 +43,7 @@ describe Dslable::Core do
     end
   end
 
-  GENERATE_DSLABLE_GEM_CASE =<<-EOS
+  GENERATE_DSLABLE_GEM_CASE = <<-EOS
 # encoding: utf-8
 gem_name "sample_gem"
 
@@ -76,7 +76,7 @@ end
   EOS
 
   context :generate do
-    OUTPUT_CORE_TMP_DIR = "core_tmp"
+    OUTPUT_CORE_TMP_DIR = 'core_tmp'
     DSLDEFINE_TEMPLATE1 = <<-EOS
 # encoding: utf-8
 
@@ -93,7 +93,7 @@ field :field_name1 do |f|
   f.args :args_name do |a|
     # set your args description
     a.desc "args description"
-    # you can use String, Array and Hash
+    # you can use String, Array, Hash and :Boolean
     a.klass String
     # if you want not required, comment out following line
     a.required
@@ -115,22 +115,22 @@ end
     cases = [
       {
         case_no: 1,
-        case_title: "output some_core, some_dsl, some_dsl_model and their spec.",
+        case_title: 'output some_core, some_dsl, some_dsl_model and their spec.',
         define_src: DSLDEFINE_TEMPLATE1,
-        gem_name: "sample_gem",
+        gem_name: 'sample_gem',
         expected_files: [
-          "./sample_gem/Gemfile",
-          "./sample_gem/sample_gem.gemspec",
-          "./sample_gem/.gitignore",
-          "./sample_gem/.rspec",
-          "./sample_gem/Rakefile",
-          "./sample_gem/README.md",
-          "./sample_gem/lib/sample_gem_core.rb",
-          "./sample_gem/lib/sample_gem_dsl.rb",
-          "./sample_gem/lib/sample_gem_dsl_model.rb",
-          "./sample_gem/bin/bin_name",
-          "./sample_gem/spec/spec_helper.rb",
-          "./sample_gem/spec/sample_gem_core_spec.rb",
+          './sample_gem/Gemfile',
+          './sample_gem/sample_gem.gemspec',
+          './sample_gem/.gitignore',
+          './sample_gem/.rspec',
+          './sample_gem/Rakefile',
+          './sample_gem/README.md',
+          './sample_gem/lib/sample_gem_core.rb',
+          './sample_gem/lib/sample_gem_dsl.rb',
+          './sample_gem/lib/sample_gem_dsl_model.rb',
+          './sample_gem/bin/bin_name',
+          './sample_gem/spec/spec_helper.rb',
+          './sample_gem/spec/sample_gem_core_spec.rb',
         ]
       },
     ]
@@ -147,7 +147,7 @@ end
           dslable_core.generate
 
           # -- then --
-          Dir.chdir("../")
+          Dir.chdir('../')
           c[:expected_files].each do |expected_file|
             actual = File.exists? expected_file
             expect(actual).to be_true
@@ -161,12 +161,12 @@ end
         # implement each case before
         Dir.mkdir(OUTPUT_CORE_TMP_DIR) unless Dir.exists? OUTPUT_CORE_TMP_DIR
         Dir.chdir(OUTPUT_CORE_TMP_DIR)
-        File.open(Dslable::Core::DSLDEFINE_FILE, "w") {|f|f.puts c[:define_src]}
+        File.open(Dslable::Core::DSLDEFINE_FILE, 'w') { |f|f.puts c[:define_src] }
       end
 
       def case_after(c)
         # implement each case after
-        Dir.chdir("../")
+        Dir.chdir('../')
         FileUtils.rm_rf(OUTPUT_CORE_TMP_DIR) if Dir.exists? OUTPUT_CORE_TMP_DIR
       end
     end

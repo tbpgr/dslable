@@ -9,7 +9,7 @@ module Dslable
     attr_accessor :_default_value
 
     def initialize
-      @_desc = ""
+      @_desc = ''
       @_required = false
     end
 
@@ -19,15 +19,15 @@ module Dslable
     end
 
     def args_name(_args_name)
-      raise InvalidArgsError.new("args_name not allow nil") if _args_name.nil?
-      raise InvalidArgsError.new("args_name not allow empty") if _args_name.empty?
-      raise InvalidArgsError.new("args_name allow /^[a-z0-9_]+$/") unless _args_name =~ /^[a-z0-9_]+$/
+      fail InvalidArgsError.new('args_name not allow nil') if _args_name.nil?
+      fail InvalidArgsError.new('args_name not allow empty') if _args_name.empty?
+      fail InvalidArgsError.new('args_name allow /^[a-z0-9_]+$/') unless _args_name =~ /^[a-z0-9_]+$/
       @_args_name = _args_name
     end
 
     def klass(_klass)
-      raise InvalidArgsError.new("klass not allow nil") if _klass.nil?
-      raise InvalidArgsError.new("klass only allow String, Array and Hash") unless [String, Hash, Array].include? (_klass)
+      fail InvalidArgsError.new('klass not allow nil') if _klass.nil?
+      fail InvalidArgsError.new('klass only allow String, Array, Hash and :Boolean(true or false)') unless [String, Hash, Array, :Boolean].include? (_klass)
       @_klass = _klass
     end
 
@@ -40,5 +40,5 @@ module Dslable
     end
   end
 
-  class InvalidArgsError < StandardError;end
+  class InvalidArgsError < StandardError; end
 end

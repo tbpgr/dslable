@@ -1,13 +1,13 @@
 # encoding: utf-8
-require "dslable_dsl"
-require "generators/generators"
-require "erb"
+require 'dslable_dsl'
+require 'generators/generators'
+require 'erb'
 require 'active_support/inflector'
 
 module Dslable::Generators::ProductCodes
   class Core
     attr_accessor :dsl
-    CORE_TEMPLATE =<<-END
+    CORE_TEMPLATE = <<-END
 # encoding: utf-8
 require '<%=gem_name%>_dsl'
 
@@ -44,11 +44,11 @@ module <%=gem_name_camel%>
 end
     END
 
-    #== initialize core
-    #=== Params
+    # == initialize core
+    # === Params
     #- _dsl: input from dsl
     def initialize(_dsl)
-      raise InvalidDslError.new("dls not allow nil") if _dsl.nil?
+      fail InvalidDslError.new('dls not allow nil') if _dsl.nil?
       @dsl = _dsl
     end
 
@@ -72,7 +72,7 @@ end
         field_dsls << get_field_klass(field)
         field_dsls << get_field_default(field) unless field._args._default_value.nil?
         field_dsls << get_field_call(field)
-        field_dsls << [""]
+        field_dsls << ['']
         field_dsls_all << field_dsls.join("\n")
       end
       field_dsls_all.join("\n")
@@ -113,11 +113,15 @@ end
     end
 
     def nil_default_array
-      ["your value"]
+      ['your value']
     end
 
     def nil_default_hash
-      {"your key" => "your value"}
+      { 'your key' => 'your value' }
+    end
+
+    def nil_default_boolean
+      false
     end
 
     def adapt_template(gem_name_camel, gem_name_upper, dsl_file_name, fields, gem_name)
@@ -126,9 +130,9 @@ end
     end
 
     def generate_core_src(core_src)
-      File.open("./lib/#{@dsl._gem_name}_core.rb", "w") {|f|f.puts core_src}
+      File.open("./lib/#{@dsl._gem_name}_core.rb", 'w') { |f|f.puts core_src }
     end
   end
 
-  class InvalidDslError < StandardError;end
+  class InvalidDslError < StandardError; end
 end

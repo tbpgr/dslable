@@ -13,28 +13,28 @@ module Dslable
     end
 
     def gem_name(_gem_name)
-      raise InvalidDslError.new("gem_name not allow nil") if _gem_name.nil?
-      raise InvalidDslError.new("gem_name not allow empty") if _gem_name.empty?
-      raise InvalidDslError.new("gem_name allow /^[a-z0-9_]+$/") unless _gem_name =~ /^[a-z0-9_]+$/
+      fail InvalidDslError.new('gem_name not allow nil') if _gem_name.nil?
+      fail InvalidDslError.new('gem_name not allow empty') if _gem_name.empty?
+      fail InvalidDslError.new('gem_name allow /^[a-z0-9_]+$/') unless _gem_name =~ /^[a-z0-9_]+$/
       @_gem_name = _gem_name
     end
 
     def gem_desc(_gem_desc)
-      raise InvalidDslError.new("gem_desc not allow nil") if _gem_desc.nil?
-      raise InvalidDslError.new("gem_desc not allow empty") if _gem_desc.empty?
+      fail InvalidDslError.new('gem_desc not allow nil') if _gem_desc.nil?
+      fail InvalidDslError.new('gem_desc not allow empty') if _gem_desc.empty?
       @_gem_desc = _gem_desc
     end
 
     def bin_name(_bin_name)
-      raise InvalidDslError.new("bin_name not allow nil") if _bin_name.nil?
-      raise InvalidDslError.new("bin_name not allow empty") if _bin_name.empty?
-      raise InvalidDslError.new("bin_name allow /^[a-z0-9_]+$/") unless _bin_name =~ /^[a-z0-9_]+$/
+      fail InvalidDslError.new('bin_name not allow nil') if _bin_name.nil?
+      fail InvalidDslError.new('bin_name not allow empty') if _bin_name.empty?
+      fail InvalidDslError.new('bin_name allow /^[a-z0-9_]+$/') unless _bin_name =~ /^[a-z0-9_]+$/
       @_bin_name = _bin_name
     end
 
     def field(_field_name)
-      raise InvalidDslError.new("field name not allow nil") if _field_name.nil?
-      raise InvalidDslError.new("field name not allow empty") if _field_name.empty?
+      fail InvalidDslError.new('field name not allow nil') if _field_name.nil?
+      fail InvalidDslError.new('field name not allow empty') if _field_name.empty?
       _field = Field.new
       _field.field_name _field_name
       yield _field
@@ -46,5 +46,5 @@ module Dslable
     end
   end
 
-  class InvalidDslError < StandardError;end
+  class InvalidDslError < StandardError; end
 end

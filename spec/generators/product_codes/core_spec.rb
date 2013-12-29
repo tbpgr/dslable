@@ -1,12 +1,13 @@
 # encoding: utf-8
-require "spec_helper"
-require "generators/product_codes/core"
-require "dslable_dsl"
+require 'spec_helper'
+require 'generators/product_codes/core'
+require 'dslable_dsl'
+require 'dslable_field'
 
 describe Dslable::Generators::ProductCodes::Core do
   context :generate do
-    OUTPUT_CORE_TMP_DIR = "generate_core"
-    OUTPUT_CORE_CASE1 =<<-EOF
+    OUTPUT_CORE_TMP_DIR = 'generate_core'
+    OUTPUT_CORE_CASE1 = <<-EOF
 # encoding: utf-8
 require 'sample_gem_dsl'
 
@@ -47,6 +48,12 @@ field5 ["your value"]
 # args6 allow only Hash
 field6 {"your key"=>"your value"}
 
+# field_desc7
+# args7 is required
+# args7 allow only Boolean
+# args7's default value => false
+field7 false
+
     EOS
 
     #== generate Samplegemfile to current directory.
@@ -74,15 +81,15 @@ end
     cases = [
       {
         case_no: 1,
-        case_title: "valid generate core class",
-        gem_name: "sample_gem",
-        fields: [:field1, :field2, :field3, :field4, :field5, :field6],
-        fields_descs: ["field_desc1", "field_desc2", "field_desc3", "field_desc4", "field_desc5", "field_desc6"],
-        args: [:args1, :args2, :args3, :args4, :args5, :args6],
-        args_klass: [String, Array, Hash, String, Array, Hash],
-        args_required: [true, true, true, false, false, false],
-        args_default: ["default1", ["default1", "default2"], {default_key: "default_value"}, nil, nil, nil],
-        expected_file: "./lib/sample_gem_core.rb",
+        case_title: 'valid generate core class',
+        gem_name: 'sample_gem',
+        fields: [:field1, :field2, :field3, :field4, :field5, :field6, :field7],
+        fields_descs: ['field_desc1', 'field_desc2', 'field_desc3', 'field_desc4', 'field_desc5', 'field_desc6', 'field_desc7'],
+        args: [:args1, :args2, :args3, :args4, :args5, :args6, :args7],
+        args_klass: [String, Array, Hash, String, Array, Hash, :Boolean],
+        args_required: [true, true, true, false, false, false, true],
+        args_default: ['default1', ['default1', 'default2'], { default_key: 'default_value' }, nil, nil, nil, false],
+        expected_file: './lib/sample_gem_core.rb',
         expected_contents: OUTPUT_CORE_CASE1
       },
 
@@ -101,7 +108,7 @@ end
           core.generate
 
           # -- then --
-          actual = File.open(c[:expected_file]) {|f|f.read}
+          actual = File.open(c[:expected_file]) { |f|f.read }
           expect(actual).to eq(c[:expected_contents])
         ensure
           case_after c
@@ -111,7 +118,7 @@ end
       def case_before(c)
         Dir.mkdir(OUTPUT_CORE_TMP_DIR) unless Dir.exists? OUTPUT_CORE_TMP_DIR
         Dir.chdir(OUTPUT_CORE_TMP_DIR)
-        Dir.mkdir "lib"
+        Dir.mkdir 'lib'
       end
 
       def setup_dsl(c, dsl)
@@ -130,7 +137,7 @@ end
       end
 
       def case_after(c)
-        Dir.chdir("../")
+        Dir.chdir('../')
         FileUtils.rm_rf(OUTPUT_CORE_TMP_DIR) if Dir.exists? OUTPUT_CORE_TMP_DIR
       end
     end
