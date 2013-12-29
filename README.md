@@ -987,6 +987,7 @@ All Tasks Finish!!
 * this gem uses 'tudu' command to create Workflow (tudu gem).
 
 ## History
+* version 0.0.3 : add using class Boolean(true or class).
 * version 0.0.2 : add workflow generation by 'tudu gem'.
 * version 0.0.1 : first release.
 
