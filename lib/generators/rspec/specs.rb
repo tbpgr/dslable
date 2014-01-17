@@ -21,7 +21,7 @@ module Dslable::Generators::RSpec
     def generate_core
       core_class_name = "#{@dsl.camelized_gem_name}::Core"
       core_class_file_name = "#{@dsl._gem_name}_core"
-      `piccolo e #{core_class_name} #{core_class_file_name} init execute`
+      `piccolo e #{core_class_name} #{core_class_file_name} execute`
     end
   end
 end
