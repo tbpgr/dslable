@@ -104,6 +104,7 @@ end
       if default_value.nil?
         method("nil_default_#{klass.to_s.downcase}").call
       else
+        default_value = default_value.to_s.delete!('{').delete!('}') if field._args._klass == Hash
         klass == String ? "\"#{default_value}\"" : default_value
       end
     end
@@ -117,7 +118,8 @@ end
     end
 
     def nil_default_hash
-      { 'your key' => 'your value' }
+      ret = { 'your key' => 'your value' }.to_s.delete!('{').delete!('}')
+      ret
     end
 
     def nil_default_boolean

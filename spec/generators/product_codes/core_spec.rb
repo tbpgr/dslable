@@ -33,8 +33,8 @@ field2 ["default1", "default2"]
 # field_desc3
 # args3 is required
 # args3 allow only Hash
-# args3's default value => {:default_key=>"default_value"}
-field3 {:default_key=>"default_value"}
+# args3's default value => :default_key=>"default_value"
+field3 :default_key=>"default_value"
 
 # field_desc4
 # args4 allow only String
@@ -46,7 +46,7 @@ field5 ["your value"]
 
 # field_desc6
 # args6 allow only Hash
-field6 {"your key"=>"your value"}
+field6 "your key"=>"your value"
 
 # field_desc7
 # args7 is required
