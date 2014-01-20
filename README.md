@@ -987,6 +987,7 @@ All Tasks Finish!!
 * this gem uses 'tudu' command to create Workflow (tudu gem).
 
 ## History
+* version 0.0.5 : update runtime_dependency(version up rspec_piccolo ver0.0.6 to ver0.0.8)
 * version 0.0.4 : delete Core#init spec generation
 * version 0.0.4 : delete Hash default brace.
 * version 0.0.3 : add using class Boolean(true or class).
