@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "thor", "~> 0.18.1"
   spec.add_runtime_dependency "activesupport", "~> 4.0.1"
-  spec.add_runtime_dependency "rspec_piccolo", "~> 0.0.6"
+  spec.add_runtime_dependency "rspec_piccolo", "~> 0.0.8"
   spec.add_runtime_dependency "bundler", "~> 1.3"
   spec.add_runtime_dependency "rspec", "~> 2.14.1"
 
