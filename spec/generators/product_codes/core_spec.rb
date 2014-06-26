@@ -84,11 +84,11 @@ end
         case_title: 'valid generate core class',
         gem_name: 'sample_gem',
         fields: [:field1, :field2, :field3, :field4, :field5, :field6, :field7],
-        fields_descs: ['field_desc1', 'field_desc2', 'field_desc3', 'field_desc4', 'field_desc5', 'field_desc6', 'field_desc7'],
+        fields_descs: %w(field_desc1 field_desc2 field_desc3 field_desc4 field_desc5 field_desc6 field_desc7),
         args: [:args1, :args2, :args3, :args4, :args5, :args6, :args7],
         args_klass: [String, Array, Hash, String, Array, Hash, :Boolean],
         args_required: [true, true, true, false, false, false, true],
-        args_default: ['default1', ['default1', 'default2'], { default_key: 'default_value' }, nil, nil, nil, false],
+        args_default: ['default1', %w(default1 default2), { default_key: 'default_value' }, nil, nil, nil, false],
         expected_file: './lib/sample_gem_core.rb',
         expected_contents: OUTPUT_CORE_CASE1
       },
@@ -116,7 +116,7 @@ end
       end
 
       def case_before(c)
-        Dir.mkdir(OUTPUT_CORE_TMP_DIR) unless Dir.exists? OUTPUT_CORE_TMP_DIR
+        Dir.mkdir(OUTPUT_CORE_TMP_DIR) unless Dir.exist? OUTPUT_CORE_TMP_DIR
         Dir.chdir(OUTPUT_CORE_TMP_DIR)
         Dir.mkdir 'lib'
       end
@@ -138,7 +138,7 @@ end
 
       def case_after(c)
         Dir.chdir('../')
-        FileUtils.rm_rf(OUTPUT_CORE_TMP_DIR) if Dir.exists? OUTPUT_CORE_TMP_DIR
+        FileUtils.rm_rf(OUTPUT_CORE_TMP_DIR) if Dir.exist? OUTPUT_CORE_TMP_DIR
       end
     end
   end

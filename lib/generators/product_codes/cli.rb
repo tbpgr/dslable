@@ -65,7 +65,7 @@ end
     end
 
     def generate_cli_src(cli_src)
-      FileUtils.mkdir_p('./bin') unless File.exists?('./bin')
+      FileUtils.mkdir_p('./bin') unless File.exist?('./bin')
       File.open("./bin/#{@dsl._bin_name}", 'w') { |f|f.puts cli_src }
     end
   end

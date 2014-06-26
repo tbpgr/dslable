@@ -29,7 +29,7 @@ describe Dslable::Generators::GemTemplate do
           gem_template.generate
 
           # -- then --
-          actual = Dir.exists?("../#{c[:gem_name]}")
+          actual = Dir.exist?("../#{c[:gem_name]}")
           expect(actual).to be_true
         ensure
 
@@ -38,13 +38,13 @@ describe Dslable::Generators::GemTemplate do
       end
 
       def case_before(c)
-        Dir.mkdir(OUTPUT_TMP_DIR) unless Dir.exists? OUTPUT_TMP_DIR
+        Dir.mkdir(OUTPUT_TMP_DIR) unless Dir.exist? OUTPUT_TMP_DIR
         Dir.chdir(OUTPUT_TMP_DIR)
       end
 
       def case_after(c)
         Dir.chdir('../../')
-        FileUtils.rm_rf(OUTPUT_TMP_DIR) if Dir.exists? OUTPUT_TMP_DIR
+        FileUtils.rm_rf(OUTPUT_TMP_DIR) if Dir.exist? OUTPUT_TMP_DIR
       end
     end
   end

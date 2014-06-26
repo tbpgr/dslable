@@ -37,7 +37,7 @@ describe Dslable::Core do
       end
 
       def case_after(c)
-        return unless File.exists? Dslable::Core::DSLDEFINE_FILE
+        return unless File.exist? Dslable::Core::DSLDEFINE_FILE
         File.delete(Dslable::Core::DSLDEFINE_FILE)
       end
     end
@@ -149,7 +149,7 @@ end
           # -- then --
           Dir.chdir('../')
           c[:expected_files].each do |expected_file|
-            actual = File.exists? expected_file
+            actual = File.exist? expected_file
             expect(actual).to be_true
           end
         ensure
@@ -159,7 +159,7 @@ end
 
       def case_before(c)
         # implement each case before
-        Dir.mkdir(OUTPUT_CORE_TMP_DIR) unless Dir.exists? OUTPUT_CORE_TMP_DIR
+        Dir.mkdir(OUTPUT_CORE_TMP_DIR) unless Dir.exist? OUTPUT_CORE_TMP_DIR
         Dir.chdir(OUTPUT_CORE_TMP_DIR)
         File.open(Dslable::Core::DSLDEFINE_FILE, 'w') { |f|f.puts c[:define_src] }
       end
@@ -167,7 +167,7 @@ end
       def case_after(c)
         # implement each case after
         Dir.chdir('../')
-        FileUtils.rm_rf(OUTPUT_CORE_TMP_DIR) if Dir.exists? OUTPUT_CORE_TMP_DIR
+        FileUtils.rm_rf(OUTPUT_CORE_TMP_DIR) if Dir.exist? OUTPUT_CORE_TMP_DIR
       end
     end
   end

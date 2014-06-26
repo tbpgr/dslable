@@ -46,11 +46,11 @@ end
         case_title: 'generate',
         gem_name: 'sample_gem',
         fields: [:field1, :field2, :field3, :field4, :field5, :field6],
-        fields_descs: ['field_desc1', 'field_desc2', 'field_desc3', 'field_desc4', 'field_desc5', 'field_desc6'],
+        fields_descs: %w(field_desc1 field_desc2 field_desc3 field_desc4 field_desc5 field_desc6),
         args: [:args1, :args2, :args3, :args4, :args5, :args6],
         args_klass: [String, Array, Hash, String, Array, Hash],
         args_required: [true, true, true, false, false, false],
-        args_default: ['default1', ['default1', 'default2'], { default_key: 'default_value' }, nil, nil, nil],
+        args_default: ['default1', %w(default1 default2), { default_key: 'default_value' }, nil, nil, nil],
         expected_file: './lib/sample_gem_dsl.rb',
         expected_contents: OUTPUT_DSL_CASE1
 
@@ -80,7 +80,7 @@ end
 
       def case_before(c)
         # implement each case before
-        Dir.mkdir(OUTPUT_DSL_TMP_DIR) unless Dir.exists? OUTPUT_DSL_TMP_DIR
+        Dir.mkdir(OUTPUT_DSL_TMP_DIR) unless Dir.exist? OUTPUT_DSL_TMP_DIR
         Dir.chdir(OUTPUT_DSL_TMP_DIR)
         Dir.mkdir 'lib'
       end
@@ -103,7 +103,7 @@ end
       def case_after(c)
         # implement each case after
         Dir.chdir('../')
-        FileUtils.rm_rf(OUTPUT_DSL_TMP_DIR) if Dir.exists? OUTPUT_DSL_TMP_DIR
+        FileUtils.rm_rf(OUTPUT_DSL_TMP_DIR) if Dir.exist? OUTPUT_DSL_TMP_DIR
       end
     end
   end

@@ -32,7 +32,7 @@ describe Dslable::Generators::RSpec::Specs do
 
           # -- then --
           c[:specs].each do |spec|
-            actual = File.exists?("./#{spec}")
+            actual = File.exist?("./#{spec}")
             expect(actual).to be_true
           end
         ensure
@@ -42,14 +42,14 @@ describe Dslable::Generators::RSpec::Specs do
       end
 
       def case_before(c)
-          Dir.mkdir(OUTPUT_SPECS_TMP_DIR) unless Dir.exists? OUTPUT_SPECS_TMP_DIR
-          Dir.chdir(OUTPUT_SPECS_TMP_DIR)
+        Dir.mkdir(OUTPUT_SPECS_TMP_DIR) unless Dir.exist? OUTPUT_SPECS_TMP_DIR
+        Dir.chdir(OUTPUT_SPECS_TMP_DIR)
         end
 
-        def case_after(c)
-          Dir.chdir('../')
-          FileUtils.rm_rf(OUTPUT_SPECS_TMP_DIR) if Dir.exists? OUTPUT_SPECS_TMP_DIR
-      end
+      def case_after(c)
+        Dir.chdir('../')
+        FileUtils.rm_rf(OUTPUT_SPECS_TMP_DIR) if Dir.exist? OUTPUT_SPECS_TMP_DIR
+    end
     end
   end
 

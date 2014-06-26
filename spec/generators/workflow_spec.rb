@@ -66,14 +66,14 @@ implement 'sample_gem_core_spec.rb'.
 
       def case_before(c)
         # implement each case before
-        Dir.mkdir(OUTPUT_WORKFLOW_TMP_DIR) unless Dir.exists? OUTPUT_WORKFLOW_TMP_DIR
+        Dir.mkdir(OUTPUT_WORKFLOW_TMP_DIR) unless Dir.exist? OUTPUT_WORKFLOW_TMP_DIR
         Dir.chdir(OUTPUT_WORKFLOW_TMP_DIR)
       end
 
       def case_after(c)
         # implement each case after
         Dir.chdir('../')
-        FileUtils.rm_rf(OUTPUT_WORKFLOW_TMP_DIR) if Dir.exists? OUTPUT_WORKFLOW_TMP_DIR
+        FileUtils.rm_rf(OUTPUT_WORKFLOW_TMP_DIR) if Dir.exist? OUTPUT_WORKFLOW_TMP_DIR
       end
     end
   end

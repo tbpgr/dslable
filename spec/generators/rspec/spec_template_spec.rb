@@ -31,7 +31,7 @@ describe Dslable::Generators::RSpec::SpecTemplate do
           spec_template.generate
 
           # -- then --
-          actual = Dir.exists?("./#{c[:spec_dir_name]}")
+          actual = Dir.exist?("./#{c[:spec_dir_name]}")
           expect(actual).to be_true
         ensure
           case_after c
@@ -40,14 +40,14 @@ describe Dslable::Generators::RSpec::SpecTemplate do
       end
 
       def case_before(c)
-          Dir.mkdir(OUTPUT_SPEC_TMP_DIR) unless Dir.exists? OUTPUT_SPEC_TMP_DIR
-          Dir.chdir(OUTPUT_SPEC_TMP_DIR)
+        Dir.mkdir(OUTPUT_SPEC_TMP_DIR) unless Dir.exist? OUTPUT_SPEC_TMP_DIR
+        Dir.chdir(OUTPUT_SPEC_TMP_DIR)
         end
 
-        def case_after(c)
-          Dir.chdir('../')
-          FileUtils.rm_rf(OUTPUT_SPEC_TMP_DIR) if Dir.exists? OUTPUT_SPEC_TMP_DIR
-      end
+      def case_after(c)
+        Dir.chdir('../')
+        FileUtils.rm_rf(OUTPUT_SPEC_TMP_DIR) if Dir.exist? OUTPUT_SPEC_TMP_DIR
+    end
     end
   end
 
