@@ -1,6 +1,7 @@
 # Dslable
 
 [![Gem Version](https://badge.fury.io/rb/dslable.svg)](http://badge.fury.io/rb/dslable)
+
 Dslable is generator for simple spec gem.
 
 ## Summary
