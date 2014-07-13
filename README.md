@@ -303,7 +303,7 @@ module FizzBuzzGem
 
     # is_upper_case
     attr_accessor :is_upper_case
-    validates :is_upper_case, :presence => true
+    validates :is_upper_case, presence: true
 
     # range
     attr_accessor :range
@@ -324,8 +324,8 @@ require "thor"
 module FizzBuzzGem
   #= FizzBuzzGem CLI
   class CLI < Thor
-    class_option :help, :type => :boolean, :aliases => '-h', :desc => 'help message.'
-    class_option :version, :type => :boolean, :desc => 'version'
+    class_option :help, type: :boolean, aliases: '-h', desc: 'help message.'
+    class_option :version, type: :boolean, desc: 'version'
 
     desc "execute", "TODO: write your desc"
     def execute
@@ -722,8 +722,8 @@ require "thor"
 module FizzBuzzGem
   #= FizzBuzzGem CLI
   class CLI < Thor
-    class_option :help, :type => :boolean, :aliases => '-h', :desc => 'help message.'
-    class_option :version, :type => :boolean, :desc => 'version'
+    class_option :help, type: :boolean, aliases: '-h', desc: 'help message.'
+    class_option :version, type: :boolean, desc: 'version'
 
     desc "execute", "execute fizz buzz"
     def execute
