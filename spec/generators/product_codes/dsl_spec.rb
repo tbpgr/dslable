@@ -19,14 +19,14 @@ module SampleGem
     # String Define
     [:field1, :field4].each do |f|
       define_method f do |value|
-        eval "@sample_gem.#\{f.to_s} = '#\{value}'", binding
+        @sample_gem.send("#\{f}=", value)
       end
     end
 
     # Array/Hash/Boolean Define
     [:field2, :field3, :field5, :field6].each do |f|
       define_method f do |value|
-        eval "@sample_gem.#\{f.to_s} = #\{value}", binding
+        @sample_gem.send("#\{f}=", value)
       end
     end
 

@@ -17,14 +17,14 @@ module <%=gem_name_camel%>
     # String Define
     [<%=string_fields%>].each do |f|
       define_method f do |value|
-        eval "@<%=gem_name%>.#\{f.to_s} = '#\{value}'", binding
+        @<%=gem_name%>.send("\#{f}=", value)
       end
     end
 
     # Array/Hash/Boolean Define
     [<%=array_hash_fields%>].each do |f|
       define_method f do |value|
-        eval "@<%=gem_name%>.#\{f.to_s} = #\{value}", binding
+        @<%=gem_name%>.send("\#{f}=", value)
       end
     end
 
