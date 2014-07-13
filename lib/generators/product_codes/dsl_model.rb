@@ -11,6 +11,7 @@ module Dslable::Generators::ProductCodes
 require 'active_model'
 
 module <%=gem_name_camel%>
+  # DslModel
   class DslModel
     include ActiveModel::Model
 

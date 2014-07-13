@@ -13,6 +13,7 @@ describe Dslable::Generators::ProductCodes::Dsl do
 require 'sample_gem_dsl_model'
 
 module SampleGem
+  # Dsl
   class Dsl
     attr_accessor :sample_gem
 

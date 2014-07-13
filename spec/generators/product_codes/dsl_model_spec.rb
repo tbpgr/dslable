@@ -11,6 +11,7 @@ describe Dslable::Generators::ProductCodes::DslModel do
 require 'active_model'
 
 module SampleGem
+  # DslModel
   class DslModel
     include ActiveModel::Model
 

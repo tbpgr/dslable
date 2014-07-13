@@ -11,6 +11,7 @@ module Dslable::Generators::ProductCodes
 require '<%=gem_name%>_dsl_model'
 
 module <%=gem_name_camel%>
+  # Dsl
   class Dsl
     attr_accessor :<%=gem_name%>
 
