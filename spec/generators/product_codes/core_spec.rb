@@ -12,10 +12,10 @@ describe Dslable::Generators::ProductCodes::Core do
 require 'sample_gem_dsl'
 
 module SampleGem
-  #  SampleGem Core
+  # SampleGem Core
   class Core
-    SAMPLE_GEM_FILE = "Samplegemfile"
-    SAMPLE_GEM_TEMPLATE =<<-EOS
+    SAMPLE_GEM_FILE = 'Samplegemfile'
+    SAMPLE_GEM_TEMPLATE = <<-EOS
 # encoding: utf-8
 
 # field_desc1
@@ -56,12 +56,14 @@ field7 false
 
     EOS
 
-    #== generate Samplegemfile to current directory.
+    # generate Samplegemfile to current directory.
     def init
-      File.open(SAMPLE_GEM_FILE, "w") {|f|f.puts SAMPLE_GEM_TEMPLATE}
+      File.open(SAMPLE_GEM_FILE, "w") do |f|
+        f.puts SAMPLE_GEM_TEMPLATE
+      end
     end
 
-    #== TODO: write your gem's specific contents
+    # TODO: write your gem's specific contents
     def execute
       src = read_dsl
       dsl = SampleGem::Dsl.new
@@ -72,8 +74,9 @@ field7 false
     end
 
     private
+
     def read_dsl
-      File.open(SAMPLE_GEM_FILE) {|f|f.read}
+      File.open(SAMPLE_GEM_FILE) { |f|f.read }
     end
   end
 end

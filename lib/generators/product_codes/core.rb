@@ -12,21 +12,23 @@ module Dslable::Generators::ProductCodes
 require '<%=gem_name%>_dsl'
 
 module <%=gem_name_camel%>
-  #  <%=gem_name_camel%> Core
+  # <%=gem_name_camel%> Core
   class Core
-    <%=gem_name_upper%>_FILE = "<%=dsl_file_name%>"
-    <%=gem_name_upper%>_TEMPLATE =<<-EOS
+    <%=gem_name_upper%>_FILE = '<%=dsl_file_name%>'
+    <%=gem_name_upper%>_TEMPLATE = <<-EOS
 # encoding: utf-8
 
 <%=fields%>
     EOS
 
-    #== generate <%=dsl_file_name%> to current directory.
+    # generate <%=dsl_file_name%> to current directory.
     def init
-      File.open(<%=gem_name_upper%>_FILE, "w") {|f|f.puts <%=gem_name_upper%>_TEMPLATE}
+      File.open(<%=gem_name_upper%>_FILE, "w") do |f|
+        f.puts <%=gem_name_upper%>_TEMPLATE
+      end
     end
 
-    #== TODO: write your gem's specific contents
+    # TODO: write your gem's specific contents
     def execute
       src = read_dsl
       dsl = <%=gem_name_camel%>::Dsl.new
@@ -37,8 +39,9 @@ module <%=gem_name_camel%>
     end
 
     private
+
     def read_dsl
-      File.open(<%=gem_name_upper%>_FILE) {|f|f.read}
+      File.open(<%=gem_name_upper%>_FILE) { |f|f.read }
     end
   end
 end
