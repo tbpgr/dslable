@@ -58,7 +58,7 @@ field7 false
 
     # generate Samplegemfile to current directory.
     def init
-      File.open(SAMPLE_GEM_FILE, "w") do |f|
+      File.open(SAMPLE_GEM_FILE, 'w') do |f|
         f.puts SAMPLE_GEM_TEMPLATE
       end
     end

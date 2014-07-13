@@ -10,6 +10,7 @@ module Dslable::Generators::ProductCodes
 # encoding: utf-8
 require 'active_model'
 
+# rubocop:disable LineLength
 module <%=gem_name_camel%>
   # DslModel
   class DslModel
@@ -18,6 +19,7 @@ module <%=gem_name_camel%>
 <%=fields%>
   end
 end
+# rubocop:enable LineLength
     EOF
 
     attr_accessor :dsl

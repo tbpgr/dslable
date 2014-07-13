@@ -23,7 +23,7 @@ module <%=gem_name_camel%>
 
     # generate <%=dsl_file_name%> to current directory.
     def init
-      File.open(<%=gem_name_upper%>_FILE, "w") do |f|
+      File.open(<%=gem_name_upper%>_FILE, 'w') do |f|
         f.puts <%=gem_name_upper%>_TEMPLATE
       end
     end

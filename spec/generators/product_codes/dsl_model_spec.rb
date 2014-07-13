@@ -10,6 +10,7 @@ describe Dslable::Generators::ProductCodes::DslModel do
 # encoding: utf-8
 require 'active_model'
 
+# rubocop:disable LineLength
 module SampleGem
   # DslModel
   class DslModel
@@ -38,6 +39,7 @@ module SampleGem
 
   end
 end
+# rubocop:enable LineLength
     EOF
 
     cases = [
