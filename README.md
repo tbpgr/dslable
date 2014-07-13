@@ -272,13 +272,13 @@ module FizzBuzzGem
 
     [:is_upper_case].each do |f|
       define_method f do |value|
-        eval "@fizz_buzz_gem.#{f.to_s} = '#{value}'", binding
+        @fizz_buzz_gem.send("#{f}=", value)
       end
     end
 
     [:range].each do |f|
       define_method f do |value|
-        eval "@fizz_buzz_gem.#{f.to_s} = #{value}", binding
+        @fizz_buzz_gem.send("#{f}=", value)
       end
     end
 
