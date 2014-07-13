@@ -41,7 +41,7 @@ end
         field_codes = []
         field_codes << "    # #{field._desc}"
         field_codes << "    attr_accessor :#{field._field_name}"
-        field_codes << "    validates :#{field._field_name}, :presence => true" if field._args._required
+        field_codes << "    validates :#{field._field_name}, presence: true" if field._args._required
         field_codes << ''
         fields << field_codes.join("\n")
       end

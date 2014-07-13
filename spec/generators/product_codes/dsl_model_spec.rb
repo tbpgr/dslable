@@ -16,15 +16,15 @@ module SampleGem
 
     # field_desc1
     attr_accessor :field1
-    validates :field1, :presence => true
+    validates :field1, presence: true
 
     # field_desc2
     attr_accessor :field2
-    validates :field2, :presence => true
+    validates :field2, presence: true
 
     # field_desc3
     attr_accessor :field3
-    validates :field3, :presence => true
+    validates :field3, presence: true
 
     # field_desc4
     attr_accessor :field4
