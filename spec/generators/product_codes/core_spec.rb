@@ -14,6 +14,7 @@ require 'sample_gem_dsl'
 module SampleGem
   # SampleGem Core
   class Core
+    # rubocop:disable LineLength
     SAMPLE_GEM_FILE = 'Samplegemfile'
     SAMPLE_GEM_TEMPLATE = <<-EOS
 # encoding: utf-8
@@ -55,6 +56,7 @@ field6 "your key"=>"your value"
 field7 false
 
     EOS
+    # rubocop:enable LineLength
 
     # generate Samplegemfile to current directory.
     def init

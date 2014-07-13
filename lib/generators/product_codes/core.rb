@@ -14,12 +14,14 @@ require '<%=gem_name%>_dsl'
 module <%=gem_name_camel%>
   # <%=gem_name_camel%> Core
   class Core
+    # rubocop:disable LineLength
     <%=gem_name_upper%>_FILE = '<%=dsl_file_name%>'
     <%=gem_name_upper%>_TEMPLATE = <<-EOS
 # encoding: utf-8
 
 <%=fields%>
     EOS
+    # rubocop:enable LineLength
 
     # generate <%=dsl_file_name%> to current directory.
     def init
