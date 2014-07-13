@@ -218,10 +218,11 @@ fizz_buzz_gem_core.rb
 require 'fizz_buzz_gem_dsl'
 
 module FizzBuzzGem
-  #  FizzBuzzGem Core
+  # FizzBuzzGem Core
   class Core
-    FIZZ_BUZZ_GEM_FILE = "Fizzbuzzgemfile"
-    FIZZ_BUZZ_GEM_TEMPLATE =<<-EOS
+    # rubocop:disable LineLength
+    FIZZ_BUZZ_GEM_FILE = 'Fizzbuzzgemfile'
+    FIZZ_BUZZ_GEM_TEMPLATE = <<-EOS
 # encoding: utf-8
 
 # is_upper_case
@@ -236,13 +237,16 @@ is_upper_case "false"
 range [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
     EOS
+    # rubocop:enable LineLength
 
-    #== generate Fizzbuzzgemfile to current directory.
+    # generate Fizzbuzzgemfile to current directory.
     def init
-      File.open(FIZZ_BUZZ_GEM_FILE, "w") {|f|f.puts FIZZ_BUZZ_GEM_TEMPLATE}
+      File.open(FIZZ_BUZZ_GEM_FILE, 'w') do |f|
+        f.puts FIZZ_BUZZ_GEM_TEMPLATE
+      end
     end
 
-    #== TODO: write your gem's specific contents
+    # TODO: write your gem's specific contents
     def execute
       src = read_dsl
       dsl = FizzBuzzGem::Dsl.new
@@ -253,8 +257,9 @@ range [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     end
 
     private
+
     def read_dsl
-      File.open(FIZZ_BUZZ_GEM_FILE) {|f|f.read}
+      File.open(FIZZ_BUZZ_GEM_FILE) { |f|f.read }
     end
   end
 end
@@ -267,15 +272,18 @@ fizz_buzz_gem_dsl.rb
 require 'fizz_buzz_gem_dsl_model'
 
 module FizzBuzzGem
+  # Dsl
   class Dsl
     attr_accessor :fizz_buzz_gem
 
+    # String Define
     [:is_upper_case].each do |f|
       define_method f do |value|
         @fizz_buzz_gem.send("#{f}=", value)
       end
     end
 
+    # Array/Hash/Boolean Define
     [:range].each do |f|
       define_method f do |value|
         @fizz_buzz_gem.send("#{f}=", value)
@@ -297,7 +305,9 @@ fizz_buzz_gem_dsl_model.rb
 # encoding: utf-8
 require 'active_model'
 
+# rubocop:disable LineLength
 module FizzBuzzGem
+  # DslModel
   class DslModel
     include ActiveModel::Model
 
@@ -310,6 +320,7 @@ module FizzBuzzGem
 
   end
 end
+# rubocop:enable LineLength
 ~~~
 
 bin source Template
@@ -989,6 +1000,7 @@ All Tasks Finish!!
 * this gem uses 'tudu' command to create Workflow (tudu gem).
 
 ## History
+* version 0.0.6 : fix generation code.remove rubocop warnings
 * version 0.0.5 : update runtime_dependency(version up rspec_piccolo ver0.0.6 to ver0.0.8)
 * version 0.0.4 : delete Core#init spec generation
 * version 0.0.4 : delete Hash default brace.
